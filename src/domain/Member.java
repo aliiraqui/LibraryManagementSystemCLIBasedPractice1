@@ -1,6 +1,6 @@
 package domain;
 
-public class Member extends Person {
+public class Member extends Person implements Comparable<Member> {
     private final int memberId;
 
     public Member(String name, int memberId) {
@@ -16,5 +16,10 @@ public class Member extends Person {
         System.out.println("~~~ Member ~~~\n" +
                 "Name: " + getName() + "\n" +
                 "Member ID: " + memberId);
+    }
+
+    @Override
+    public int compareTo(Member o) {
+        return this.getName().compareTo(o.getName());
     }
 }
