@@ -7,7 +7,11 @@ import domain.Member;
 public interface LibraryAction {
     void addBook(Book book);
 
+    void removeBook(String title);
+
     void addMember(Member member);
+
+    void removeMember(int memberID);
 
     void issueBook(int memberID, String title);
 
