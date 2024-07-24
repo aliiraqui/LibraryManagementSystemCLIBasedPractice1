@@ -8,9 +8,9 @@ import java.util.*;
 
 public class Library implements LibraryAction {
 
-    private List<Book> bookList;
-    private Map<Integer, Member> memberList;
-    private Map<String, Book> issuedList;
+    private final List<Book> bookList;
+    private final Map<Integer, Member> memberList;
+    private final Map<String, Book> issuedList;
 
     public Library() {
         bookList = new ArrayList<>();
@@ -32,12 +32,29 @@ public class Library implements LibraryAction {
 
     @Override
     public void issueBook(int memberID, String title) {
-
+        for (Book book : bookList) {
+            if (book.getTitle().equalsIgnoreCase(title) && !book.isIssued()) {
+                Member member = memberList.get(memberID);
+                if (member != null) {
+                    issuedList.put(title, book);
+                    System.out.println("~~~ Book Issued ~~~");
+                    book.setIssued(true);
+                }
+                System.out.println("~~~ Member Not Found ~~~");
+            }
+            System.out.println("~~~ Book Not found ~~~");
+        }
     }
 
     @Override
     public void returnBook(String title) {
-
+        Book removeBook = issuedList.remove(title);
+        if (removeBook != null) {
+            removeBook.setIssued(false);
+            System.out.println("~~~ Book returned ~~~");
+        } else {
+            System.out.println("~~~ Book not found ~~~");
+        }
     }
 
     @Override
@@ -72,7 +89,8 @@ public class Library implements LibraryAction {
 
     @Override
     public void sortMember() {
-
+        List<Member> member = new ArrayList<>(memberList.values());
+        Collections.sort(member);
     }
 
 
