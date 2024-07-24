@@ -25,9 +25,36 @@ public class Library implements LibraryAction {
     }
 
     @Override
+    public void removeBook(String title) {
+        for (Book book : bookList) {
+            String bookTitle = book.getTitle();
+            if (bookTitle.equalsIgnoreCase(title)) {
+                bookList.remove(book);
+                System.out.println("~~~ Book Removed ~~~");
+                return;
+            }
+
+        }
+        System.out.println("~~~ Book Not Found ~~~");
+    }
+
+    @Override
     public void addMember(Member member) {
         memberList.put(member.getMemberId(), member);
-        System.out.println(member.getName() + "Added Successfully");
+        System.out.println(member.getName() + "~~~ Added Successfully ~~~");
+    }
+
+    @Override
+    public void removeMember(int memberID) {
+        for (Member member : memberList.values()) {
+            if (member.getMemberId() == memberID) {
+                memberList.remove(memberID);
+                System.out.println("~~~ Member Removed ~~~");
+                return;
+            }
+
+        }
+        System.out.println("~~~ Member Not Found ~~~");
     }
 
     @Override
