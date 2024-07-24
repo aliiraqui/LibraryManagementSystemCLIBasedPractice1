@@ -7,6 +7,7 @@ public class Book extends AbstractEntity implements Comparable<Book> {
     private boolean isIssued;
 
     public Book(String title, String author, String genre) {
+        super();
         this.title = title;
         this.author = author;
         this.genre = genre;
