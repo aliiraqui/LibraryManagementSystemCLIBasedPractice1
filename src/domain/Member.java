@@ -18,8 +18,9 @@ public class Member extends Person implements Comparable<Member> {
                 "Member ID: " + memberId);
     }
 
+
     @Override
     public int compareTo(Member o) {
-        return this.getName().compareTo(o.getName());
+        return Long.compare(o.getId(), this.getId());
     }
 }
